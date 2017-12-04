@@ -24,9 +24,9 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "bcurl": "^0.0.1"
   },
   "devDependencies": {
+    "bcurl": "github:tuxcanfly/bcurl",
     "babelify": "^7.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
