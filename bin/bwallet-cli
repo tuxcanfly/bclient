@@ -479,6 +479,18 @@ class CLI {
     this.log(result);
   }
 
+  async fee() {
+    const rate = parseFloat(this.argv.shift());
+    let result;
+    if (!rate) {
+      result = await this.client.getFee();
+    } else {
+      result = await this.client.setFee(rate);
+    }
+
+    this.log(result);
+  }
+
   async handleWallet() {
     switch (this.argv.shift()) {
       case 'listen':
@@ -666,6 +678,9 @@ class CLI {
         case 'rpc':
           await this.rpc();
           break;
+        case 'fee':
+          await this.fee();
+          break;
         default:
           this.log('Unrecognized command.');
           this.log('Commands:');
@@ -674,6 +689,7 @@ class CLI {
           this.log('  $ resend: Resend pending transactions.');
           this.log('  $ backup [path]: Backup the wallet db.');
           this.log('  $ rpc [command] [args]: Execute RPC command.');
+          this.log('  $ fee [rate?]: Get/Set fee rate.');
           break;
       }
       return;
